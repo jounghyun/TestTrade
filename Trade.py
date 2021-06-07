@@ -41,14 +41,14 @@ while True:
                 print("buy : {0}".format(krw*0.9995))
                 upbit.buy_market_order("KRW-BTC", krw*0.9995) 
         else:
-            btc = get_balance("KRW-BTC")
+            btc = get_balance("BTC")
             #if btc > 0.00008:
             print("sell : {0}".format(btc*0.9995))
             upbit.sell_market_order("KRW-BTC", btc*0.9995)
 
-        time.sleep(5)
+        time.sleep(500)
     except Exception as e:
         print(e)
-        time.sleep(5)
+        time.sleep(500)
 
 #df.to_excel("dd.xlsx")
