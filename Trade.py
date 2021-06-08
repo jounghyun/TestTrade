@@ -35,23 +35,26 @@ while True:
 
         print ('ash(h-2) : {0}, ash(h-1) : {1} , ash_cur : {2}, nor(h-2) : {3}, nor(h-1) : {4}, nor_cur : {5}'.format(df.iloc[97,8], df.iloc[98,8], df.iloc[99,8], df.iloc[97,9], df.iloc[98,9], df.iloc[99,9]))
 
+        btc = get_balance("BTC")
+        krw = get_balance("KRW")
+
         if df.iloc[97,8] > 0 and df.iloc[98,8] > 0 and df.iloc[97,9] > 0 and df.iloc[98,9] > 0:
-            krw = get_balance("KRW")
             print("balance : {0} won".format(krw))
             if krw > 5000:
                 print("buy : {0}".format(krw*0.9995))
                 upbit.buy_market_order("KRW-BTC", krw*0.9995) 
-        else:
-            btc = get_balance("BTC")
-            print("sell : {0}".format(btc*0.9995))
-            
+        elif df.iloc[97,8] < 0 or df.iloc[98,8] < 0:            
+            print("current : {0} btc".format(btc))
             if btc > 0.00008:
                 print("sell : {0}".format(btc*0.9995))
                 upbit.sell_market_order("KRW-BTC", btc*0.9995)
+        else:
+            print("hold btc : {0}".format(btc))
+            print("hold won : {0}".format(krw))
 
-        time.sleep(500)
+        time.sleep(60)
     except Exception as e:
         print(e)
-        time.sleep(500)
+        time.sleep(60)
 
 #df.to_excel("dd.xlsx")
