@@ -54,9 +54,9 @@ while True:
         krw = get_balance("KRW")
 
         if dist.seconds > 3800 :
-            if df.iloc[97,8] < 0 and df.iloc[98,8] < 0 and df.iloc[98,9] < 0:
+            if df.iloc[97,8] < 0 and df.iloc[98,8] < 0:
                 print("current : {0} btc".format(btc))
-                if btc > 0.00008:
+                if btc > 0.00008 and df.iloc[98,9] < 0:
                     print("sell : {0}".format(btc*0.9995))
                     upbit.sell_market_order("KRW-BTC", btc*0.9995)
             else:
